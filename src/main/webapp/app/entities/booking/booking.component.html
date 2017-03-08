@@ -1,0 +1,99 @@
+<div>
+    <h2>
+        <span>Bookings</span>
+        <button class="btn btn-primary float-right create-booking" [routerLink]="['/', { outlets: { popup: ['booking-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span >
+            Create new Booking
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="bookings">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
+            <th jhiSortBy="id"><span>ID</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="startDate"><span>Start Date</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="endDate"><span>End Date</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="costPerKilometer"><span>Cost Per Kilometer</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="driverId"><span>Driver</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="ownerId"><span>Owner</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="startAddressId"><span>Start Address</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="endAddressId"><span>End Address</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="bookingId"><span>Booking</span> <span class="fa fa-sort"></span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let booking of bookings ;trackBy: trackId">
+                <td><a [routerLink]="['../booking', booking.id ]">{{booking.id}}</a></td>
+                <td>{{booking.startDate | date:'medium'}}</td>
+                <td>{{booking.endDate | date:'medium'}}</td>
+                <td>{{booking.costPerKilometer}}</td>
+                <td>
+                    <div *ngIf="booking.driverId">
+                        <a [routerLink]="['../app-user', booking.driverId  ]" >{{booking.driverId}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="booking.ownerId">
+                        <a [routerLink]="['../app-user', booking.ownerId  ]" >{{booking.ownerId}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="booking.startAddressId">
+                        <a [routerLink]="['../address', booking.startAddressId  ]" >{{booking.startAddressId}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="booking.endAddressId">
+                        <a [routerLink]="['../address', booking.endAddressId  ]" >{{booking.endAddressId}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="booking.bookingId">
+                        <a [routerLink]="['../booking', booking.bookingId  ]" >{{booking.bookingId}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../booking', booking.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="hidden-md-down">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'booking/'+ booking.id + '/edit'} }]"
+                                replaceUrl="true"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="hidden-md-down">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'booking/'+ booking.id + '/delete'} }]"
+                                replaceUrl="true"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="hidden-md-down">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+        <!-- Pager is not implemented yet, so this is normal pagination instead -->
+        <div *ngIf="bookings && bookings.length">
+            <div class="row justify-content-center">
+                <jhi-item-count [page]="page" [total]="queryCount" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+            </div>
+            <div class="row justify-content-center">
+                <ngb-pagination [collectionSize]="totalItems" [(page)]="page"  (pageChange)="loadPage(page)"></ngb-pagination>
+            </div>
+        </div>
+</div>

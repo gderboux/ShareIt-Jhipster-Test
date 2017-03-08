@@ -40,6 +40,13 @@ public class CacheConfiguration {
             cm.createCache(com.shareit.app.domain.User.class.getName(), jcacheConfiguration);
             cm.createCache(com.shareit.app.domain.Authority.class.getName(), jcacheConfiguration);
             cm.createCache(com.shareit.app.domain.User.class.getName() + ".authorities", jcacheConfiguration);
+            cm.createCache(com.shareit.app.domain.Address.class.getName(), jcacheConfiguration);
+            cm.createCache(com.shareit.app.domain.AppUser.class.getName(), jcacheConfiguration);
+            cm.createCache(com.shareit.app.domain.Booking.class.getName(), jcacheConfiguration);
+            cm.createCache(com.shareit.app.domain.Booking.class.getName() + ".passengerBookings", jcacheConfiguration);
+            cm.createCache(com.shareit.app.domain.Car.class.getName(), jcacheConfiguration);
+            cm.createCache(com.shareit.app.domain.Feedback.class.getName(), jcacheConfiguration);
+            cm.createCache(com.shareit.app.domain.Frequency.class.getName(), jcacheConfiguration);
             // jhipster-needle-ehcache-add-entry
         };
     }

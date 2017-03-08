@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+    <!--
+        Added the constraints for entity Booking.
+    -->
+    <changeSet id="20170308102657-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="driver_id"
+                                 baseTableName="booking"
+                                 constraintName="fk_booking_driver_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="app_user"/>
+
+        <addForeignKeyConstraint baseColumnNames="owner_id"
+                                 baseTableName="booking"
+                                 constraintName="fk_booking_owner_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="app_user"/>
+
+        <addForeignKeyConstraint baseColumnNames="start_address_id"
+                                 baseTableName="booking"
+                                 constraintName="fk_booking_start_address_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="address"/>
+
+        <addForeignKeyConstraint baseColumnNames="end_address_id"
+                                 baseTableName="booking"
+                                 constraintName="fk_booking_end_address_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="address"/>
+
+        <addForeignKeyConstraint baseColumnNames="booking_id"
+                                 baseTableName="booking"
+                                 constraintName="fk_booking_booking_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="booking"/>
+
+    </changeSet>
+</databaseChangeLog>

@@ -1,0 +1,63 @@
+
+<div *ngIf="booking">
+    <h2><span>Booking</span> {{booking.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span>Start Date</span></dt>
+        <dd>
+            <span>{{booking.startDate | date:'medium'}}</span>
+        </dd>
+        <dt><span>End Date</span></dt>
+        <dd>
+            <span>{{booking.endDate | date:'medium'}}</span>
+        </dd>
+        <dt><span>Cost Per Kilometer</span></dt>
+        <dd>
+            <span>{{booking.costPerKilometer}}</span>
+        </dd>
+        <dt><span>Driver</span></dt>
+        <dd>
+            <div *ngIf="booking.driverId">
+                <a [routerLink]="['/app-user', booking.driverId]">{{booking.driverId}}</a>
+            </div>
+        </dd>
+        <dt><span>Owner</span></dt>
+        <dd>
+            <div *ngIf="booking.ownerId">
+                <a [routerLink]="['/app-user', booking.ownerId]">{{booking.ownerId}}</a>
+            </div>
+        </dd>
+        <dt><span>Start Address</span></dt>
+        <dd>
+            <div *ngIf="booking.startAddressId">
+                <a [routerLink]="['/address', booking.startAddressId]">{{booking.startAddressId}}</a>
+            </div>
+        </dd>
+        <dt><span>End Address</span></dt>
+        <dd>
+            <div *ngIf="booking.endAddressId">
+                <a [routerLink]="['/address', booking.endAddressId]">{{booking.endAddressId}}</a>
+            </div>
+        </dd>
+        <dt><span>Booking</span></dt>
+        <dd>
+            <div *ngIf="booking.bookingId">
+                <a [routerLink]="['/booking', booking.bookingId]">{{booking.bookingId}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'booking/'+ booking.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span> Edit</span>
+    </button>
+</div>

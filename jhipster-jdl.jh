@@ -1,0 +1,101 @@
+entity AppUser {
+    gender Gender required,
+    phoneNumber String required,
+    avatar ImageBlob,
+    licence ImageBlob,
+    isAuthorizedDriver Boolean
+}
+
+entity Address {
+	streetNumber String required,
+    streetName String required,
+    city String required,
+    zipCode String required,
+    country String required,
+    latitude Double,
+    longitude Double
+}
+
+entity Car {
+	vin String required,
+    description String required,
+    color Color required,
+    numberOfSeat Integer required,
+    carPicture ImageBlob
+}
+
+entity Booking {
+
+    startDate ZonedDateTime required,
+    endDate ZonedDateTime required,
+    costPerKilometer Double required
+}
+
+entity Frequency {
+	monday Boolean,
+    tuesday Boolean,
+    wednesday Boolean,
+    thursday Boolean,
+    friday Boolean,
+    saturday Boolean,
+    sunday Boolean
+}
+
+entity Feedback {
+    comment String required,
+    visible Boolean required,
+    rank Integer required
+}
+
+enum Gender {
+HOMME,
+FEMME
+}
+
+enum Color {
+BLACK,
+RED,
+WHITE,
+BLUE,
+GREY,
+GREEN,
+YELLOW,
+ORANGE
+}
+
+//User RelationShip
+relationship OneToOne {
+	AppUser{car} to Car,
+    AppUser{address required} to Address,
+    AppUser{jhiUser required} to User
+}
+
+//Booking RelationShip
+relationship OneToOne {
+	Booking{driver required} to AppUser,
+	Booking{owner required} to AppUser,
+    Booking{startAddress required} to Address,
+    Booking{endAddress required} to Address
+}
+
+relationship OneToMany {
+	Booking{passengerBookings} to Booking
+}
+
+//Feedback RelationShip
+relationship OneToOne {
+	Feedback{booking} to Booking,
+    Feedback{user} to AppUser,
+    Feedback{reporter required} to AppUser
+}
+
+//Frequency RelationShip
+relationship OneToOne {
+	Frequency{booking required} to Booking
+}
+
+
+dto * with mapstruct
+service * with serviceClass
+paginate Booking with pager
+

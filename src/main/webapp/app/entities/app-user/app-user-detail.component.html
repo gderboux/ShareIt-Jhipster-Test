@@ -1,0 +1,67 @@
+
+<div *ngIf="appUser">
+    <h2><span>App User</span> {{appUser.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span>Gender</span></dt>
+        <dd>
+            <span>{{appUser.gender}}</span>
+        </dd>
+        <dt><span>Phone Number</span></dt>
+        <dd>
+            <span>{{appUser.phoneNumber}}</span>
+        </dd>
+        <dt><span>Avatar</span></dt>
+        <dd>
+            <div *ngIf="appUser.avatar">
+                <a (click)="openFile(appUser.avatarContentType, appUser.avatar)">
+                    <img [src]="'data:' + appUser.avatarContentType + ';base64,' + appUser.avatar" style="max-width: 100%;" alt="appUser image"/>
+                </a>
+                {{appUser.avatarContentType}}, {{byteSize(appUser.avatar)}}
+            </div>
+        </dd>
+        <dt><span>Licence</span></dt>
+        <dd>
+            <div *ngIf="appUser.licence">
+                <a (click)="openFile(appUser.licenceContentType, appUser.licence)">
+                    <img [src]="'data:' + appUser.licenceContentType + ';base64,' + appUser.licence" style="max-width: 100%;" alt="appUser image"/>
+                </a>
+                {{appUser.licenceContentType}}, {{byteSize(appUser.licence)}}
+            </div>
+        </dd>
+        <dt><span>Is Authorized Driver</span></dt>
+        <dd>
+            <span>{{appUser.isAuthorizedDriver}}</span>
+        </dd>
+        <dt><span>Car</span></dt>
+        <dd>
+            <div *ngIf="appUser.carId">
+                <a [routerLink]="['/car', appUser.carId]">{{appUser.carId}}</a>
+            </div>
+        </dd>
+        <dt><span>Address</span></dt>
+        <dd>
+            <div *ngIf="appUser.addressId">
+                <a [routerLink]="['/address', appUser.addressId]">{{appUser.addressId}}</a>
+            </div>
+        </dd>
+        <dt><span>Jhi User</span></dt>
+        <dd>
+            {{appUser.jhiUserId}}
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'app-user/'+ appUser.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span> Edit</span>
+    </button>
+</div>

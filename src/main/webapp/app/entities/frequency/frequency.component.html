@@ -1,0 +1,74 @@
+<div>
+    <h2>
+        <span>Frequencies</span>
+        <button class="btn btn-primary float-right create-frequency" [routerLink]="['/', { outlets: { popup: ['frequency-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span >
+            Create new Frequency
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="frequencies">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span>ID</span></th>
+            <th><span>Monday</span></th>
+            <th><span>Tuesday</span></th>
+            <th><span>Wednesday</span></th>
+            <th><span>Thursday</span></th>
+            <th><span>Friday</span></th>
+            <th><span>Saturday</span></th>
+            <th><span>Sunday</span></th>
+            <th><span>Booking</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let frequency of frequencies ;trackBy: trackId">
+                <td><a [routerLink]="['../frequency', frequency.id ]">{{frequency.id}}</a></td>
+                <td>{{frequency.monday}}</td>
+                <td>{{frequency.tuesday}}</td>
+                <td>{{frequency.wednesday}}</td>
+                <td>{{frequency.thursday}}</td>
+                <td>{{frequency.friday}}</td>
+                <td>{{frequency.saturday}}</td>
+                <td>{{frequency.sunday}}</td>
+                <td>
+                    <div *ngIf="frequency.bookingId">
+                        <a [routerLink]="['../booking', frequency.bookingId  ]" >{{frequency.bookingId}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../frequency', frequency.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="hidden-md-down">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'frequency/'+ frequency.id + '/edit'} }]"
+                                replaceUrl="true"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="hidden-md-down">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'frequency/'+ frequency.id + '/delete'} }]"
+                                replaceUrl="true"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="hidden-md-down">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,105 @@
+
+
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myCarLabel">Create or edit a Car</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!car.id">
+            <label for="id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="car.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_vin">Vin</label>
+            <input type="text" class="form-control" name="vin" id="field_vin"
+                [(ngModel)]="car.vin"
+            required />
+            <div [hidden]="!(editForm.controls.vin?.dirty && editForm.controls.vin?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.vin?.errors?.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_description">Description</label>
+            <input type="text" class="form-control" name="description" id="field_description"
+                [(ngModel)]="car.description"
+            required />
+            <div [hidden]="!(editForm.controls.description?.dirty && editForm.controls.description?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.description?.errors?.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_color">Color</label>
+            <select class="form-control" name="color" [(ngModel)]="car.color" id="field_color"  required>
+                <option value="BLACK">BLACK</option>
+                <option value="RED">RED</option>
+                <option value="WHITE">WHITE</option>
+                <option value="BLUE">BLUE</option>
+                <option value="GREY">GREY</option>
+                <option value="GREEN">GREEN</option>
+                <option value="YELLOW">YELLOW</option>
+                <option value="ORANGE">ORANGE</option>
+            </select>
+            <div [hidden]="!(editForm.controls.color?.dirty && editForm.controls.color?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.color?.errors?.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_numberOfSeat">Number Of Seat</label>
+            <input type="number" class="form-control" name="numberOfSeat" id="field_numberOfSeat"
+                [(ngModel)]="car.numberOfSeat"
+            required />
+            <div [hidden]="!(editForm.controls.numberOfSeat?.dirty && editForm.controls.numberOfSeat?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.numberOfSeat?.errors?.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.numberOfSeat?.errors?.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_carPicture">Car Picture</label>
+            <div>
+                <img [src]="'data:' + car.carPictureContentType + ';base64,' + car.carPicture" style="max-height: 100px;" *ngIf="car.carPicture" alt="car image"/>
+                <div *ngIf="car.carPicture" class="form-text text-danger clearfix">
+                    <span class="pull-left">{{car.carPictureContentType}}, {{byteSize(car.carPicture)}}</span>
+                    <button type="button" (click)="car.carPicture=null;car.carPictureContentType=null;"
+                            class="btn btn-default btn-xs pull-right">
+                        <span class="fa fa-times"></span>
+                    </button>
+                </div>
+                <input type="file" (change)="setFileData($event, car, 'carPicture', true)" accept="image/*"/>
+            </div>
+            <input type="hidden" class="form-control" name="carPicture" id="field_carPicture"
+                [(ngModel)]="car.carPicture"
+             />
+            <input type="hidden" class="form-control" name="carPictureContentType" id="field_carPictureContentType"
+                [(ngModel)]="car.carPictureContentType" />
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span>Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span>Save</span>
+        </button>
+    </div>
+</form>

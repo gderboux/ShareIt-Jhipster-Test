@@ -1,0 +1,51 @@
+
+<div *ngIf="feedback">
+    <h2><span>Feedback</span> {{feedback.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span>Comment</span></dt>
+        <dd>
+            <span>{{feedback.comment}}</span>
+        </dd>
+        <dt><span>Visible</span></dt>
+        <dd>
+            <span>{{feedback.visible}}</span>
+        </dd>
+        <dt><span>Rank</span></dt>
+        <dd>
+            <span>{{feedback.rank}}</span>
+        </dd>
+        <dt><span>Booking</span></dt>
+        <dd>
+            <div *ngIf="feedback.bookingId">
+                <a [routerLink]="['/booking', feedback.bookingId]">{{feedback.bookingId}}</a>
+            </div>
+        </dd>
+        <dt><span>User</span></dt>
+        <dd>
+            <div *ngIf="feedback.userId">
+                <a [routerLink]="['/app-user', feedback.userId]">{{feedback.userId}}</a>
+            </div>
+        </dd>
+        <dt><span>Reporter</span></dt>
+        <dd>
+            <div *ngIf="feedback.reporterId">
+                <a [routerLink]="['/app-user', feedback.reporterId]">{{feedback.reporterId}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'feedback/'+ feedback.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span> Edit</span>
+    </button>
+</div>

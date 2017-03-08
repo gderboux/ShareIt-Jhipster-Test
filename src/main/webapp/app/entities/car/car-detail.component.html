@@ -1,0 +1,46 @@
+
+<div *ngIf="car">
+    <h2><span>Car</span> {{car.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span>Vin</span></dt>
+        <dd>
+            <span>{{car.vin}}</span>
+        </dd>
+        <dt><span>Description</span></dt>
+        <dd>
+            <span>{{car.description}}</span>
+        </dd>
+        <dt><span>Color</span></dt>
+        <dd>
+            <span>{{car.color}}</span>
+        </dd>
+        <dt><span>Number Of Seat</span></dt>
+        <dd>
+            <span>{{car.numberOfSeat}}</span>
+        </dd>
+        <dt><span>Car Picture</span></dt>
+        <dd>
+            <div *ngIf="car.carPicture">
+                <a (click)="openFile(car.carPictureContentType, car.carPicture)">
+                    <img [src]="'data:' + car.carPictureContentType + ';base64,' + car.carPicture" style="max-width: 100%;" alt="car image"/>
+                </a>
+                {{car.carPictureContentType}}, {{byteSize(car.carPicture)}}
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'car/'+ car.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span> Edit</span>
+    </button>
+</div>

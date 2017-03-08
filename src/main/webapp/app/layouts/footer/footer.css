@@ -1,0 +1,38 @@
+.footer{
+    text-align: center;
+}
+
+.footer-first-part{
+    height: 250px;
+    background-color: #5E7C88;
+}
+.footer-second-part{
+    height: 75px;
+    background-color: #3A4147;
+    list-style-type: none;
+    color: rgba(98,122,135,1);
+}
+
+li{
+    display: inline;
+    margin-right: 20px;
+}
+
+.btn{
+    width: 230px;
+    height: 35px;
+    background-color: #FEB41C;
+    border-radius: 4px;
+}
+
+#logo-img{
+    width: 100px;
+    height: 100px;
+    position: relative;
+    top: -50px;
+    margin-left: auto;
+    margin-right: auto;
+    background: url('../../../content/images/logo.png') no-repeat;
+    background-size: contain;
+}
+

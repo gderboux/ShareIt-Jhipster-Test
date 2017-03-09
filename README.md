@@ -1,3 +1,5 @@
+
+[![Build Status](https://travis-ci.org/lifeinzik/ShareIt-Jhipster-Test.svg?branch=master)](https://travis-ci.org/lifeinzik/ShareIt-Jhipster-Test)
 # shareItV2
 This application was generated using JHipster 4.0.7, you can find documentation and help at [https://jhipster.github.io/documentation-archive/v4.0.7](https://jhipster.github.io/documentation-archive/v4.0.7).
 

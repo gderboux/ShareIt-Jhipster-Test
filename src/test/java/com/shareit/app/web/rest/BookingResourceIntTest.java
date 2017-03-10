@@ -4,8 +4,6 @@ import com.shareit.app.ShareItV2App;
 
 import com.shareit.app.domain.Booking;
 import com.shareit.app.domain.AppUser;
-import com.shareit.app.domain.AppUser;
-import com.shareit.app.domain.Address;
 import com.shareit.app.domain.Address;
 import com.shareit.app.repository.BookingRepository;
 import com.shareit.app.service.BookingService;
@@ -99,7 +97,7 @@ public class BookingResourceIntTest {
      * This is a static method, as tests for other entities might also need it,
      * if they test an entity which requires the current entity.
      */
-    public static Booking createEntity(EntityManager em) {
+    public static Booking createEntityLikeADriver(EntityManager em) {
         Booking booking = new Booking()
                 .startDate(DEFAULT_START_DATE)
                 .endDate(DEFAULT_END_DATE)
@@ -110,10 +108,7 @@ public class BookingResourceIntTest {
         em.flush();
         booking.setDriver(driver);
         // Add required entity
-        AppUser owner = AppUserResourceIntTest.createEntity(em);
-        em.persist(owner);
-        em.flush();
-        booking.setOwner(owner);
+        booking.setOwner(driver);
         // Add required entity
         Address startAddress = AddressResourceIntTest.createEntity(em);
         em.persist(startAddress);
@@ -129,7 +124,7 @@ public class BookingResourceIntTest {
 
     @Before
     public void initTest() {
-        booking = createEntity(em);
+        booking = createEntityLikeADriver(em);
     }
 
     @Test
@@ -338,6 +333,7 @@ public class BookingResourceIntTest {
     }
 
     @Test
+    @Transactional
     public void equalsVerifier() throws Exception {
         TestUtil.equalsVerifier(Booking.class);
     }

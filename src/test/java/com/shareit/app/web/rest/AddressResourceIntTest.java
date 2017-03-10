@@ -383,6 +383,7 @@ public class AddressResourceIntTest {
     }
 
     @Test
+    @Transactional
     public void equalsVerifier() throws Exception {
         TestUtil.equalsVerifier(Address.class);
     }

@@ -315,6 +315,7 @@ public class FeedbackResourceIntTest {
     }
 
     @Test
+    @Transactional
     public void equalsVerifier() throws Exception {
         TestUtil.equalsVerifier(Feedback.class);
     }

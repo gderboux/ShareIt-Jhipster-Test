@@ -356,6 +356,7 @@ public class CarResourceIntTest {
     }
 
     @Test
+    @Transactional
     public void equalsVerifier() throws Exception {
         TestUtil.equalsVerifier(Car.class);
     }

@@ -113,7 +113,7 @@ public class FrequencyResourceIntTest {
                 .saturday(DEFAULT_SATURDAY)
                 .sunday(DEFAULT_SUNDAY);
         // Add required entity
-        Booking booking = BookingResourceIntTest.createEntity(em);
+        Booking booking = BookingResourceIntTest.createEntityLikeADriver(em);
         em.persist(booking);
         em.flush();
         frequency.setBooking(booking);
@@ -294,6 +294,7 @@ public class FrequencyResourceIntTest {
     }
 
     @Test
+    @Transactional
     public void equalsVerifier() throws Exception {
         TestUtil.equalsVerifier(Frequency.class);
     }

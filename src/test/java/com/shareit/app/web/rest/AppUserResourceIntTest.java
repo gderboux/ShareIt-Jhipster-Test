@@ -338,6 +338,7 @@ public class AppUserResourceIntTest {
     }
 
     @Test
+    @Transactional
     public void equalsVerifier() throws Exception {
         TestUtil.equalsVerifier(AppUser.class);
     }

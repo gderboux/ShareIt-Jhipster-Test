@@ -1,0 +1,55 @@
+
+<div *ngIf="frequency">
+    <h2><span>Frequency</span> {{frequency.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span>Monday</span></dt>
+        <dd>
+            <span>{{frequency.monday}}</span>
+        </dd>
+        <dt><span>Tuesday</span></dt>
+        <dd>
+            <span>{{frequency.tuesday}}</span>
+        </dd>
+        <dt><span>Wednesday</span></dt>
+        <dd>
+            <span>{{frequency.wednesday}}</span>
+        </dd>
+        <dt><span>Thursday</span></dt>
+        <dd>
+            <span>{{frequency.thursday}}</span>
+        </dd>
+        <dt><span>Friday</span></dt>
+        <dd>
+            <span>{{frequency.friday}}</span>
+        </dd>
+        <dt><span>Saturday</span></dt>
+        <dd>
+            <span>{{frequency.saturday}}</span>
+        </dd>
+        <dt><span>Sunday</span></dt>
+        <dd>
+            <span>{{frequency.sunday}}</span>
+        </dd>
+        <dt><span>Booking</span></dt>
+        <dd>
+            <div *ngIf="frequency.bookingId">
+                <a [routerLink]="['/booking', frequency.bookingId]">{{frequency.bookingId}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'frequency/'+ frequency.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span> Edit</span>
+    </button>
+</div>

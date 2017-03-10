@@ -1,0 +1,94 @@
+
+
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myFeedbackLabel">Create or edit a Feedback</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!feedback.id">
+            <label for="id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="feedback.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_comment">Comment</label>
+            <input type="text" class="form-control" name="comment" id="field_comment"
+                [(ngModel)]="feedback.comment"
+            required />
+            <div [hidden]="!(editForm.controls.comment?.dirty && editForm.controls.comment?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.comment?.errors?.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_visible">Visible</label>
+            <input type="checkbox" class="form-control" name="visible" id="field_visible"
+                [(ngModel)]="feedback.visible"
+             />
+            <div [hidden]="!(editForm.controls.visible?.dirty && editForm.controls.visible?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.visible?.errors?.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_rank">Rank</label>
+            <input type="number" class="form-control" name="rank" id="field_rank"
+                [(ngModel)]="feedback.rank"
+            required />
+            <div [hidden]="!(editForm.controls.rank?.dirty && editForm.controls.rank?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.rank?.errors?.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.rank?.errors?.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="field_booking">Booking</label>
+            <select class="form-control" id="field_booking" name="booking" [(ngModel)]="feedback.bookingId">
+                <option [ngValue]="null"></option>
+                <option [ngValue]="bookingOption.id" *ngFor="let bookingOption of bookings; trackBy: trackBookingById">{{bookingOption.id}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="field_user">User</label>
+            <select class="form-control" id="field_user" name="user" [(ngModel)]="feedback.userId">
+                <option [ngValue]="null"></option>
+                <option [ngValue]="appUserOption.id" *ngFor="let appUserOption of users; trackBy: trackAppUserById">{{appUserOption.id}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="field_reporter">Reporter</label>
+            <select class="form-control" id="field_reporter" name="reporter" [(ngModel)]="feedback.reporterId" required>
+                <option [ngValue]="null"></option>
+                <option [ngValue]="appUserOption.id" *ngFor="let appUserOption of reporters; trackBy: trackAppUserById">{{appUserOption.id}}</option>
+            </select>
+        </div>
+        <div [hidden]="!(editForm.controls.reporter?.dirty && editForm.controls.reporter?.invalid)">
+            <small class="form-text text-danger"
+                [hidden]="!editForm.controls.reporter?.errors?.required">
+                This field is required.
+            </small>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span>Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span>Save</span>
+        </button>
+    </div>
+</form>

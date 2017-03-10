@@ -1,42 +1,52 @@
-<div class="row">
-    <div class="col-md-3">
-        <span class="hipster img-fluid img-rounded"></span>
+<div class="jumbotron jumbotron-fluid home-img">
+    <div class="center">
+        <h1>La Route est tellement plus fun à plusieurs</h1>
+        <h2>Trouvez-vous quelqu'un pour la route !</h2>
+        <p><a class="btn btn-lg" href="#" role="button">
+            <span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span>Trouver gratuitement
+        </a></p>
     </div>
-    <div class="col-md-9">
-        <h1 class="display-4">Welcome ShareItApp !</h1>
-        <p class="lead">This is your homepage</p>
-
-        <div [ngSwitch]="isAuthenticated()">
-            <div class="alert alert-success" *ngSwitchCase="true">
-                <span *ngIf="account"
-                   > You are logged in as user "{{account.login}}". </span>
-            </div>
-
-            <div class="alert alert-warning" *ngSwitchCase="false">
-                <span>If you want to </span>
-                <a class="alert-link" (click)="login()">sign in</a><span>, you can try the default accounts:<br/>- Administrator (login="admin" and password="admin") <br/>- User (login="user" and password="user").</span>
-            </div>
-
-            <div class="alert alert-warning" *ngSwitchCase="false">
-                <span>You don't have an account yet?</span>
-                <a class="alert-link" routerLink="register">Register a new account</a>
-            </div>
-        </div>
-
-        <p>
-            If you have any question on JHipster:
-        </p>
-
+</div>
+<div class="pair-block row" id="step-description">
+    <div class="col-md-4">
+        <h5>Remplis les champs</h5>
+        <p>Eh oui, on doit passer par là !</p>
+        <span class="ico-description" id="cni-img"></span>
+    </div>
+    <div class="col-md-4">
+        <h5>Trouves ton partenaires</h5>
+        <p>Ou c'est lui qui te trouveras !</p>
+        <span class="ico-description" id="reseau-img"></span>
+    </div>
+    <div class="col-md-4">
+        <h5>Appelle le</h5>
+        <p>Et prévoyez vos trajets quotidiens !</p>
+        <span class="ico-description" id="tel-img"></span>
+    </div>
+</div>
+<div class="odd-block row" id="result-block">
+    <div class="col-md-6">
+        <h5>Paré à rouler !</h5>
         <ul>
-            <li><a href="http://jhipster.github.io/" target="_blank">JHipster homepage</a></li>
-            <li><a href="http://stackoverflow.com/tags/jhipster/info" target="_blank">JHipster on Stack Overflow</a></li>
-            <li><a href="https://github.com/jhipster/generator-jhipster/issues?state=open" target="_blank">JHipster bug tracker</a></li>
-            <li><a href="https://gitter.im/jhipster/generator-jhipster" target="_blank">JHipster public chat room</a></li>
-            <li><a href="https://twitter.com/java_hipster" target="_blank" >follow @java_hipster on Twitter</a></li>
+            <li>Vous êtes mis en relation avec <strong>des particuliers proches de chez vous</strong>.</li>
+            <li>Choissisez la personne avec qui vous souhaitez <strong>partager vos trajets</strong>.</li>
+            <li>Notre application vous aide à trouver <strong>LE</strong> bon match</li>
         </ul>
-
-        <p>
-            <span>If you like JHipster, don't forget to give us a star on</span> <a href="https://github.com/jhipster/generator-jhipster" target="_blank">Github</a>!
-        </p>
+    </div>
+    <div class="col-md-6">
+        <div id="result-img"></div>
+    </div>
+</div>
+<div class="pair-block row" id="safety-block">
+    <div class="col-md-6">
+        <div id="safety-img"></div>
+    </div>
+    <div class="col-md-6">
+        <h5>La sécurité d'abord</h5>
+        <ul>
+            <li>Des profils utilisateurs duement contrôlés.</li>
+            <li>Un système de notation communautaire fiable et intuitif.</li>
+            <li>Des contrôles réguliers</li>
+        </ul>
     </div>
 </div>

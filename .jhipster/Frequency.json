@@ -1,0 +1,49 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "relationshipValidateRules": "required",
+            "relationshipName": "booking",
+            "otherEntityName": "booking",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "frequency"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "monday",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "tuesday",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "wednesday",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "thursday",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "friday",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "saturday",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "sunday",
+            "fieldType": "Boolean"
+        }
+    ],
+    "changelogDate": "20170308102657",
+    "entityTableName": "frequency",
+    "dto": "mapstruct",
+    "pagination": "no",
+    "service": "serviceClass"
+}

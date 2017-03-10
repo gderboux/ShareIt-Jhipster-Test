@@ -1,0 +1,129 @@
+
+
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myAppUserLabel">Create or edit a App User</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!appUser.id">
+            <label for="id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="appUser.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_gender">Gender</label>
+            <select class="form-control" name="gender" [(ngModel)]="appUser.gender" id="field_gender"  required>
+                <option value="HOMME">HOMME</option>
+                <option value="FEMME">FEMME</option>
+            </select>
+            <div [hidden]="!(editForm.controls.gender?.dirty && editForm.controls.gender?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.gender?.errors?.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_phoneNumber">Phone Number</label>
+            <input type="text" class="form-control" name="phoneNumber" id="field_phoneNumber"
+                [(ngModel)]="appUser.phoneNumber"
+            required />
+            <div [hidden]="!(editForm.controls.phoneNumber?.dirty && editForm.controls.phoneNumber?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.phoneNumber?.errors?.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_avatar">Avatar</label>
+            <div>
+                <img [src]="'data:' + appUser.avatarContentType + ';base64,' + appUser.avatar" style="max-height: 100px;" *ngIf="appUser.avatar" alt="appUser image"/>
+                <div *ngIf="appUser.avatar" class="form-text text-danger clearfix">
+                    <span class="pull-left">{{appUser.avatarContentType}}, {{byteSize(appUser.avatar)}}</span>
+                    <button type="button" (click)="appUser.avatar=null;appUser.avatarContentType=null;"
+                            class="btn btn-default btn-xs pull-right">
+                        <span class="fa fa-times"></span>
+                    </button>
+                </div>
+                <input type="file" (change)="setFileData($event, appUser, 'avatar', true)" accept="image/*"/>
+            </div>
+            <input type="hidden" class="form-control" name="avatar" id="field_avatar"
+                [(ngModel)]="appUser.avatar"
+             />
+            <input type="hidden" class="form-control" name="avatarContentType" id="field_avatarContentType"
+                [(ngModel)]="appUser.avatarContentType" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_licence">Licence</label>
+            <div>
+                <img [src]="'data:' + appUser.licenceContentType + ';base64,' + appUser.licence" style="max-height: 100px;" *ngIf="appUser.licence" alt="appUser image"/>
+                <div *ngIf="appUser.licence" class="form-text text-danger clearfix">
+                    <span class="pull-left">{{appUser.licenceContentType}}, {{byteSize(appUser.licence)}}</span>
+                    <button type="button" (click)="appUser.licence=null;appUser.licenceContentType=null;"
+                            class="btn btn-default btn-xs pull-right">
+                        <span class="fa fa-times"></span>
+                    </button>
+                </div>
+                <input type="file" (change)="setFileData($event, appUser, 'licence', true)" accept="image/*"/>
+            </div>
+            <input type="hidden" class="form-control" name="licence" id="field_licence"
+                [(ngModel)]="appUser.licence"
+             />
+            <input type="hidden" class="form-control" name="licenceContentType" id="field_licenceContentType"
+                [(ngModel)]="appUser.licenceContentType" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_isAuthorizedDriver">Is Authorized Driver</label>
+            <input type="checkbox" class="form-control" name="isAuthorizedDriver" id="field_isAuthorizedDriver"
+                [(ngModel)]="appUser.isAuthorizedDriver"
+             />
+        </div>
+
+        <div class="form-group">
+            <label for="field_car">Car</label>
+            <select class="form-control" id="field_car" name="car" [(ngModel)]="appUser.carId">
+                <option [ngValue]="null"></option>
+                <option [ngValue]="carOption.id" *ngFor="let carOption of cars; trackBy: trackCarById">{{carOption.id}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="field_address">Address</label>
+            <select class="form-control" id="field_address" name="address" [(ngModel)]="appUser.addressId" required>
+                <option [ngValue]="null"></option>
+                <option [ngValue]="addressOption.id" *ngFor="let addressOption of addresses; trackBy: trackAddressById">{{addressOption.id}}</option>
+            </select>
+        </div>
+        <div [hidden]="!(editForm.controls.address?.dirty && editForm.controls.address?.invalid)">
+            <small class="form-text text-danger"
+                [hidden]="!editForm.controls.address?.errors?.required">
+                This field is required.
+            </small>
+        </div>
+        <div class="form-group">
+            <label for="field_jhiUser">Jhi User</label>
+            <select class="form-control" id="field_jhiUser" name="jhiUser" [(ngModel)]="appUser.jhiUserId"  required>
+                <option [ngValue]="null"></option>
+                <option [ngValue]="userOption.id" *ngFor="let userOption of users; trackBy: trackUserById">{{userOption.id}}</option>
+            </select>
+        </div>
+        <div [hidden]="!(editForm.controls.jhiUser?.dirty && editForm.controls.jhiUser?.invalid)">
+            <small class="form-text text-danger"
+                [hidden]="!editForm.controls.jhiUser?.errors?.required">
+                This field is required.
+            </small>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span>Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span>Save</span>
+        </button>
+    </div>
+</form>

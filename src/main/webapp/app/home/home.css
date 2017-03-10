@@ -1,26 +1,95 @@
-/* ==========================================================================
-Main page styles
-========================================================================== */
+.home-img{
+    text-transform: uppercase;
+    background: url("../../content/images/home-img.jpg") no-repeat center;
+    background-size: cover;
+    height: 525px;
+}
 
-.hipster {
+.center{
+    color: #FFFFFF;
+    position: absolute;
+    top: 160px;
+    width: 100%;
+    text-align: center;
+}
+
+.center h1{
+    font-size: 2.5em;
+    line-height: 60px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.center h2{
+    font-size: 2em;
+    line-height: 45px;
+    margin-bottom: 80px;
+}
+
+.center .btn{
+    font-weight: bold;
+    color: #ffffff;
+    background-color: #FEB41C;
+}
+
+.pair-block{
+    padding-top: 40px;
+    padding-bottom: 40px;
+    padding-left: 15%;
+    padding-right: 15%;
+    background-color: #F4F4F4;
+    text-align: center;
+}
+
+.odd-block{
+    padding-top: 40px;
+    padding-bottom: 40px;
+    padding-left: 15%;
+    padding-right: 15%;
+    border: 1px solid #5E7C88;
+    text-align: center;
+}
+
+.odd-block ul{
+    text-align: justify;
+}
+
+.pair-block ul{
+    text-align: justify;
+}
+
+.ico-description{
+    width: 150px;
+    height: 100px;
     display: inline-block;
-    width: 347px;
-    height: 497px;
-    background: url("../../content/images/hipster.png") no-repeat center top;
+    vertical-align: middle;
+}
+
+#cni-img{
+    background: url('../../content/images/cni-img.png') no-repeat;
     background-size: contain;
 }
 
-/* wait autoprefixer update to allow simple generation of high pixel density media query */
-@media
-only screen and (-webkit-min-device-pixel-ratio: 2),
-only screen and (   min--moz-device-pixel-ratio: 2),
-only screen and (     -o-min-device-pixel-ratio: 2/1),
-only screen and (        min-device-pixel-ratio: 2),
-only screen and (                min-resolution: 192dpi),
-only screen and (                min-resolution: 2dppx) {
-    .hipster {
-        background: url("../../content/images/hipster2x.png") no-repeat center top;
-        background-size: contain;
-    }
+#reseau-img{
+    background: url('../../content/images/reseaux.png') no-repeat;
+    background-size: contain;
 }
 
+#tel-img{
+    background: url('../../content/images/tel.png') no-repeat;
+    background-size: contain;
+}
+
+#result-img{
+    width: 120%;
+    height: 120%;
+    background: url('../../content/images/result.png') no-repeat;
+    background-size: contain;
+}
+
+#safety-img{
+    width: 120%;
+    height: 120%;
+    background: url('../../content/images/safety.png') no-repeat;
+    background-size: contain;
+}

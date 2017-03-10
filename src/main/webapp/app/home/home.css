@@ -1,3 +1,11 @@
+.jumbotron{
+    margin-bottom: 0;
+}
+#background{
+    width: 100%;
+    height: 100%;
+    background-color: rgba(36,34,31,0.4);
+}
 .home-img{
     text-transform: uppercase;
     background: url("../../content/images/home-img.jpg") no-repeat center;
@@ -32,30 +40,29 @@
     background-color: #FEB41C;
 }
 
-.pair-block{
-    padding-top: 40px;
-    padding-bottom: 40px;
+.block{
+    padding-top: 100px;
+    padding-bottom: 100px;
     padding-left: 15%;
     padding-right: 15%;
-    background-color: #F4F4F4;
     text-align: center;
+
+}
+
+.pair-block{
+    background-color: #F4F4F4;
 }
 
 .odd-block{
-    padding-top: 40px;
-    padding-bottom: 40px;
-    padding-left: 15%;
-    padding-right: 15%;
     border: 1px solid #5E7C88;
-    text-align: center;
 }
 
-.odd-block ul{
+.block ul{
     text-align: justify;
 }
 
-.pair-block ul{
-    text-align: justify;
+.block li{
+    margin-top: 15px;
 }
 
 .ico-description{

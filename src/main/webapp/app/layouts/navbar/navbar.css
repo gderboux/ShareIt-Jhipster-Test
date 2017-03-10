@@ -45,8 +45,6 @@ Navbar
     color: #fff;
 }
 
-
-
 @media screen and (max-width: 992px) {
     .jh-logo-container {
         width: 100%;
@@ -91,9 +89,7 @@ nav-bar styles
     position: relative;
     width: 500px;
     margin-left: auto;
-    margin-right: auto;    text-align: center;
+    margin-right: auto;
+    text-align: center;
 }
 
-navbar-collapse{
-    font-size: 2em;
-}

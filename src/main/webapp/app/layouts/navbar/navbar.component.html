@@ -1,24 +1,22 @@
 <nav class="navbar navbar-inverse navbar-toggleable-md jh-navbar">
     <div class="jh-logo-container float-left">
-        <a class="navbar-brand logo float-left" routerLink="/" (click)="collapseNavbar()">
+        <a class="navbar-brand logo float-left" routerLink="/" (click)="collapseNavbar()" href="#">
             <span class="logo-img"></span>
         </a>
     </div>
-
-
-    <ul class="navbar-nav navbar-collapse" id="central-navbar">
-        <li class="nav-item " routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
-            <a class="nav-link" routerLink="/" (click)="collapseNavbar()">
+    <ul class="navbar-nav navbar-collapse pointer" id="central-navbar">
+        <li class="nav-item pointer">
+            <a class="nav-link" routerLinkActive="active" routerLink="/" (click)="collapseNavbar()" href="javascript:void(0);">
                 <span>Concept</span>
             </a>
         </li>
         <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
-            <a class="nav-link" routerLink="/" (click)="collapseNavbar()">
+            <a class="nav-link" routerLink="/" (click)="collapseNavbar()" href="javascript:void(0);">
                 <span>Trajets</span>
             </a>
         </li>
         <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
-            <a class="nav-link" routerLink="/" (click)="collapseNavbar()">
+            <a class="nav-link" routerLink="/" (click)="collapseNavbar()" href="javascript:void(0);">
                 <span>Qui sommes nous ?</span>
             </a>
         </li>

@@ -6,6 +6,15 @@
     height: 250px;
     background-color: #5E7C88;
 }
+
+.footer-text{
+    position: relative;
+    top: -30px;
+}
+
+.footer-text p:first-of-type{
+    font-size: 2em;
+}
 .footer-second-part{
     height: 75px;
     background-color: #3A4147;
@@ -14,15 +23,15 @@
 }
 
 li{
-    display: inline;
+    display: inline-block;
     margin-right: 20px;
+    vertical-align: middle;
 }
 
 .btn{
-    width: 230px;
-    height: 35px;
+    font-weight: bold;
+    color: #ffffff;
     background-color: #FEB41C;
-    border-radius: 4px;
 }
 
 #logo-img{
@@ -36,3 +45,18 @@ li{
     background-size: contain;
 }
 
+.footer-second-part ul{
+
+}
+
+#fb-logo{
+    width: 40px;
+    height: 40px;
+    background-image: url('../../../content/images/fb_logo.png');
+}
+
+#twitter-logo{
+    width: 40px;
+    height: 40px;
+    background-image: url('../../../content/images/twitter-logo.png');
+}
